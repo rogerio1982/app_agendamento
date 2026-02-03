@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard - Consultas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; background: #f6f7f9; }
+        h1 { margin-bottom: 16px; }
+        table { width: 100%; border-collapse: collapse; background: #fff; }
+        th, td { padding: 10px 12px; border-bottom: 1px solid #e6e6e6; text-align: left; }
+        th { background: #f0f2f5; }
+        .empty { padding: 16px; background: #fff; border: 1px solid #e6e6e6; }
+    </style>
+</head>
+<body>
+    <h1>Consultas Agendadas</h1>
+    {% if consultas %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Tipo</th>
+                <th>Chat ID</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in consultas %}
+            <tr>
+                <td>{{ c[0] }}</td>
+                <td>{{ c[2] }}</td>
+                <td>{{ c[3] }}</td>
+                <td>{{ c[4] }}</td>
+                <td>{{ c[5] }}</td>
+                <td>{{ c[6] }}</td>
+                <td>{{ c[1] }}</td>
+                <td>{{ c[7] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty">Nenhuma consulta agendada.</div>
+    {% endif %}
+</body>
+</html>
