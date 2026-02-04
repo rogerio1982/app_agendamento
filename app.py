@@ -21,8 +21,6 @@ TELEGRAM_API_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
 
 app = Flask(__name__)
 
-app = Flask(__name__)
-
 
 llm = ChatOpenAI(
     api_key=OPENAI_API_KEY,
@@ -208,13 +206,14 @@ def webhook():
     #mensagem = data["message"].get("text", "")
     mensagem = data["message"].get("text", "").strip().lower()
 
+    agent = get_agent(chat_id)
+
 
     # 🔄 RESET EXPLÍCITO DO AGENT
     if mensagem.lower() == "/reset":
         reset_agent(chat_id)
         enviar_mensagem(chat_id, "🔄 Atendimento reiniciado. Pode começar novamente.")
         return jsonify({"status": "reset"})
-        agent = get_agent(chat_id)
 
     resposta = agent.run(f"""
 Você é um ATENDENTE VIRTUAL de uma clínica de psicologia.
